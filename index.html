@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday MADAM</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffe6f0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      position: absolute;
+      top: 30px;
+      font-size: 3em;
+      color: #ff3399;
+      z-index: 2;
+      text-shadow: 2px 2px white;
+    }
+
+    .heart {
+      width: 10px;
+      height: 10px;
+      background: red;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: rotate(45deg);
+      animation: float 3s ease-out forwards;
+      opacity: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: red;
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -5px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -5px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(-50%, -50%) scale(0.5) rotate(45deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1) rotate(45deg);
+        opacity: 1;
+      }
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      max-width: 80%;
+      text-align: center;
+      font-size: 1.2em;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday MADAM</h1>
+
+  <div class="message">
+    <p>
+      Dear Madam,<br><br>
+      Wishing you the happiest of birthdays! Your kindness, wisdom, and strength inspire everyone around you.<br><br>
+      May your day be filled with laughter, love, and endless joy.<br><br>
+      You deserve all the beautiful moments that life has to offer.<br><br>
+      With warmest wishes,<br>
+      Someone who admires you
+    </p>
+  </div>
+
+  <script>
+    // Create and animate hearts
+    const hearts = [];
+
+    for (let i = 0; i < 70; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      const x = Math.random() * window.innerWidth - window.innerWidth / 2;
+      const y = Math.random() * window.innerHeight - window.innerHeight / 2;
+      heart.style.setProperty('--x', `${x}px`);
+      heart.style.setProperty('--y', `${y}px`);
+      heart.style.left = "50%";
+      heart.style.top = "50%";
+      document.body.appendChild(heart);
+      hearts.push(heart);
+    }
+
+    // Remove hearts after 4 seconds
+    setTimeout(() => {
+      hearts.forEach(heart => {
+        heart.style.transition = "opacity 1s ease";
+        heart.style.opacity = "0";
+        setTimeout(() => heart.remove(), 1000);
+      });
+    }, 4000);
+  </script>
+</body>
+</html>
