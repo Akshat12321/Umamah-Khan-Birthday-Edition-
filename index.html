@@ -100,9 +100,7 @@
   </div>
 
   <script>
-    // Create and animate hearts
-    const hearts = [];
-
+    // Create and animate hearts (no fade out now)
     for (let i = 0; i < 70; i++) {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -113,17 +111,7 @@
       heart.style.left = "50%";
       heart.style.top = "50%";
       document.body.appendChild(heart);
-      hearts.push(heart);
     }
-
-    // Remove hearts after 4 seconds
-    setTimeout(() => {
-      hearts.forEach(heart => {
-        heart.style.transition = "opacity 1s ease";
-        heart.style.opacity = "0";
-        setTimeout(() => heart.remove(), 1000);
-      });
-    }, 4000);
   </script>
 </body>
 </html>
